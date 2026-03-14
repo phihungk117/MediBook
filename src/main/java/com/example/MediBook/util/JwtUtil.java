@@ -24,7 +24,7 @@ public class JwtUtil {
     private Long expiration;
 
     // hàm tạo chữ ký bảo mật để xác thực JWT token
-    private SecretKey getSingKey(){
+    private SecretKey getSignKey(){
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         //Tạo SecretKey dùng cho thuật toán HMAC-SHA
         return Keys.hmacShaKeyFor(keyBytes);
@@ -45,7 +45,7 @@ public class JwtUtil {
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis())) //thời gian tạo token
                 .expiration(new Date(System.currentTimeMillis() + expiration)) //thời gian hết hạn
-                .signWith(getSingKey()) //ký token với secret key
+                .signWith(getSignKey()) //ký token với secret key
                 .compact(); //đóng gói token thành chuỗi
     }
         // Overload: Nếu chỉ truyền UserDetails mà không cần biến phụ thì xài hàm này
