@@ -9,7 +9,7 @@ public record LoginRequest (
     //@NotBlank dùng để kiểm tra dữ liệu không được rỗng và không chỉ chứa khoảng trắng.
     @NotBlank(message = "Email không được để trống")
     @NotBlank(message = "Email không được để trống")
-    String Email,
+    String email,
 
     @NotBlank(message = "Password không được để trống")
     String password
